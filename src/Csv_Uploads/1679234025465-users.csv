@@ -1,0 +1,10 @@
+username,email,password,roleid
+John Doe,john@example.com,john123,1
+Jane Smith,jane@example.com,jane123,2
+Bob Johnson,bob@example.com,bob123,1
+Alice Williams,alice@example.com,alice123,2
+Tom Brown,tom@example.com,tom123,1
+Emily Davis,emily@example.com,emily123,2
+Michael Lee,michael@example.com,michael123,1
+Sarah Wilson,sarah@example.com,sarah123,3
+David Martin,david@example.com,david123,1

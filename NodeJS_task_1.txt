@@ -1,0 +1,88 @@
+NodeJS task 1:
+==========================================
+Collections:
+1. User - Contains user details.
+2. Course - Contains list of courses available.
+3. UserCourse - Contains coursedetails of each user.
+4. Roles - Contains the role_details
+
+Roles:
+1. Learner
+2. Instructor
+3. Admin
+
+APIs:
+1. CreateUser (single user)- Only Admin should access (input --> First_name, last_name, Role, course)  
+2. UpdateUser - Only Admin should access
+3. DeleteUser - Only Admin should access
+4. GetUser - Only Admin should access
+5. UserSignUp - all users
+6. UserLogin - all users
+7. GetAllCourses - only admin should access
+8. GetUserCourses - Learner and instructor should access
+9. CreateUser (multiple user CSV upload)- Only Admin should access
+
+Middleware:
+1. Perform JWT validtion
+2. Check user role and perform API accessibility for the role.
+
+Notes:
+1. Proper error messages
+2. Proper function names
+
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+1. User:
+	UserID (primary key) serial
+	UserName
+	Email
+	Password
+	RoleId
+2. Course:
+	CourseID (primary key)
+	Course Name
+	Course Credit
+	Course Format (Online/offline/hybrid)
+	Course Fee
+3. UserCourse:
+	UserCourseID (primary key)
+	UserID (foreign key referencing User table)
+	CourseID (foreign key referencing Course table)
+
+4. Roles:
+	RoleID (primary key)
+	Role Name
+	Role Description
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+CREATE TABLE Users (
+    UserID serial PRIMARY KEY,
+    UserName VARCHAR(50) NOT NULL,
+    Email VARCHAR(50) NOT NULL ,
+    Password VARCHAR(50) NOT NULL,
+    RoleId INTEGER REFERENCES Roles(RoleID)
+);
+
+CREATE TABLE Course (
+    CourseID INTEGER PRIMARY KEY,
+    CourseName VARCHAR(100) NOT NULL,
+    CourseCredit INTEGER NOT NULL,
+    CourseFormat VARCHAR(20) NOT NULL,
+    CourseFee FLOAT NOT NULL
+);
+
+CREATE TABLE UserCourse (
+    UserCourseID serial PRIMARY KEY,
+    UserID INTEGER REFERENCES Users(UserID),
+    CourseID INTEGER REFERENCES Course(CourseID)
+);
+
+CREATE TABLE Roles (
+    RoleID INTEGER PRIMARY KEY,
+    RoleName VARCHAR(50) NOT NULL,
+    RoleDescription VARCHAR(255)
+);
+
+ALTER SEQUENCE your_table_roleid_seq RESTART WITH 11;
